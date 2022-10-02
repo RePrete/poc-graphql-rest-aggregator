@@ -1,0 +1,23 @@
+version: '2.4'
+services:
+  backend-service:
+    build:
+      context: backend-service
+      args:
+        - NODE_ENV=development
+    command: npm run watch
+    volumes:
+      - ./backend-service:/code
+    ports:
+      - '3010:3010'
+
+  graphql-service:
+    build:
+      context: graphql-service
+      args:
+        - NODE_ENV=development
+    command: npm run watch
+    volumes:
+      - ./graphql-service:/code
+    ports:
+      - '3000:3000'

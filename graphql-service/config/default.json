@@ -1,0 +1,35 @@
+{
+    "server": {
+        "port": 3000
+    },
+    "services": {
+        "image": {
+            "protocol": "http",
+            "host": "backend-service",
+            "port": 3010
+        }
+    },
+    "schema": [
+        {
+            "type": "Restaurant",
+            "mapped_properties": [
+                {
+                    "type": "Country",
+                    "parent_property": "country_code",
+                    "resolver": {
+                        "url": "http://backend-service:3010/countries",
+                        "search_by": "country_code"
+                    }
+                },
+                {
+                    "type": "Owner",
+                    "parent_property": "owner",
+                    "resolver": {
+                        "url": "http://backend-service:3010/owners",
+                        "search_by": "id"
+                    }
+                }
+            ]
+        }
+    ]
+}
